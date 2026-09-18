@@ -1,0 +1,139 @@
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:ital,wght@0,500;0,700;0,800;1,800&family=Kaushan+Script&display=swap");
+
+* ,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #041f17;
+}
+
+#root {
+  width: 100%;
+}
+
+body {
+  font-family: "Barlow Condensed", system-ui, sans-serif;
+  color: #151515;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 3px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.brb {
+  --nav-h: clamp(72px, 5.3vw, 100px);
+  --green-900: #041f17;
+  --green-800: #073526;
+  --orange: #f5921e;
+  --red: #e5241d;
+  --cream: #f3ece0;
+  --charcoal: #151515;
+  --hero-h: calc(100vh - var(--nav-h));
+  --d: min(46vw, calc(var(--hero-h) * 0.86));
+  color: #fff;
+  min-height: 100vh;
+  background: var(--green-900);
+  overflow-x: hidden;
+}
+@supports (height: 100svh) {
+  .brb {
+    --hero-h: calc(100svh - var(--nav-h));
+  }
+}
+
+.eyebrow {
+  margin: 0 0 4px;
+  color: var(--orange);
+  font-style: italic;
+  font-weight: 800;
+  font-size: clamp(15px, 1.35vw, 22px);
+  letter-spacing: 0.02em;
+}
+.eyebrow--dark {
+  color: var(--red);
+}
+
+.section-title {
+  margin: 0 0 14px;
+  font-family: "Anton", "Barlow Condensed", sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  font-size: clamp(30px, 3.4vw, 52px);
+  line-height: 1.1;
+  color: var(--charcoal);
+}
+.section-title--light {
+  color: #fff;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 30px;
+  border-radius: 999px;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  border: 2px solid transparent;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.btn--primary {
+  background: var(--red);
+  color: #fff;
+}
+.btn--primary:hover {
+  background: #ff3a30;
+  transform: translateY(-2px);
+}
+.btn--ghost {
+  border-color: var(--green-800);
+  color: var(--green-800);
+  background: transparent;
+}
+.btn--ghost:hover {
+  background: var(--green-800);
+  color: #fff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
