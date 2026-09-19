@@ -14,8 +14,8 @@ export default function Footer() {
           <Link to="/" className="logo">
             <ChefHat />
             <span className="logo__text">
-              <span className="logo__name">Barab</span>
-              <span className="logo__tag">Mutton &amp; Grill House</span>
+              <span className="logo__name">Shresth</span>
+              <span className="logo__tag">Champaran Mutton Handi</span>
             </span>
           </Link>
           <p className="site-footer__about">
@@ -24,13 +24,13 @@ export default function Footer() {
           </p>
           <ul className="site-footer__contact">
             <li>
-              <MapPin /> Station Road, near Bus Stand
+              <MapPin /> Doranda Main Rd., Namkum Ranchi, Jharkhand
             </li>
             <li>
-              <Phone /> +91 98765 43210
+              <Phone /> +91 85410 12451
             </li>
             <li>
-              <Mail /> hello@barabmutton.example
+              <Mail /> hello@shresth.mutton.com
             </li>
           </ul>
           <div className="site-footer__social">
@@ -56,9 +56,6 @@ export default function Footer() {
               <Link to="/">Home</Link>
             </li>
             <li>
-              <Link to="/#about">About</Link>
-            </li>
-            <li>
               <Link to="/menu">Menu</Link>
             </li>
             <li>
@@ -76,9 +73,6 @@ export default function Footer() {
             <li>
               <span>Sat – Sun</span> <span>12pm – 12am</span>
             </li>
-            <li>
-              <span>Handi orders</span> <span>Pre-book 2h ahead</span>
-            </li>
           </ul>
         </div>
 
@@ -94,8 +88,7 @@ export default function Footer() {
 
       <div className="site-footer__bottom">
         <p>
-          © {YEAR} Barab Mutton &amp; Grill House. All rights reserved. Built as a demo storefront —
-          all prices and orders on this site are illustrative.
+          © {YEAR} Shresth Champaran Mutton Handi All rights reserved.
         </p>
       </div>
     </footer>

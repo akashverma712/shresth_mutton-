@@ -1,0 +1,269 @@
+.cart-wrap {
+  position: relative;
+}
+
+.cart-panel {
+  position: absolute;
+  top: calc(100% + 14px);
+  right: 0;
+  width: min(340px, 92vw);
+  max-height: min(420px, 70vh);
+  overflow-y: auto;
+  background: #fff;
+  color: var(--charcoal);
+  border-radius: 16px;
+  box-shadow: 0 28px 54px -18px rgba(0, 0, 0, 0.4);
+  padding: 18px 18px 16px;
+  z-index: 50;
+  animation: cart-panel-in 0.22s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@keyframes cart-panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.cart-panel__title {
+  margin: 0 0 12px;
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.cart-panel__empty {
+  margin: 0;
+  font-size: 14px;
+  color: #777;
+  padding: 8px 0 4px;
+}
+
+.cart-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed rgba(21, 21, 21, 0.15);
+  animation: cart-item-in 0.25s ease both;
+}
+@keyframes cart-item-in {
+  from {
+    opacity: 0;
+    transform: translateX(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.cart-item__name {
+  flex: 1;
+  min-width: 0;
+  font-size: 13.5px;
+  font-weight: 700;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.cart-item__qty {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--cream);
+  border-radius: 999px;
+  padding: 3px;
+}
+.cart-item__qty button {
+  width: 22px;
+  height: 22px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+  transition: transform 0.15s ease, background 0.15s ease;
+}
+.cart-item__qty button:hover {
+  background: var(--green-800);
+  color: #fff;
+  transform: scale(1.06);
+}
+.cart-item__qty span {
+  min-width: 16px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.cart-item__price {
+  font-weight: 800;
+  font-size: 13.5px;
+  white-space: nowrap;
+  min-width: 46px;
+  text-align: right;
+}
+
+.cart-item__remove {
+  border: 0;
+  background: transparent;
+  color: #b3413b;
+  display: grid;
+  place-items: center;
+  padding: 4px;
+  border-radius: 8px;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.cart-item__remove:hover {
+  background: rgba(179, 65, 59, 0.1);
+  transform: scale(1.08);
+}
+
+.cart-panel__total {
+  display: flex;
+  justify-content: space-between;
+  margin: 14px 0 12px;
+  font-weight: 800;
+  font-size: 15px;
+}
+
+.cart-confirm {
+  width: 100%;
+  padding: 12px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--red);
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: 0.03em;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+.cart-confirm:hover {
+  background: #ff3a30;
+}
+.cart-confirm:active {
+  transform: scale(0.98);
+}
+.cart-confirm:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+/* Confirming state — replaces the panel content with a success animation */
+.cart-confirming {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 6px 12px;
+}
+.cart-confirming__circle {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #2f8f4e;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  position: relative;
+  animation: pop-in 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+.cart-confirming__circle::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 2px solid rgba(47, 143, 78, 0.4);
+  animation: ring-pulse 1s ease-out 0.25s 2;
+}
+.cart-confirming__circle svg {
+  animation: check-draw 0.35s ease 0.15s both;
+}
+.cart-confirming p {
+  margin: 0;
+  font-weight: 800;
+  font-size: 15px;
+  text-align: center;
+}
+.cart-confirming span {
+  font-size: 12.5px;
+  color: #888;
+}
+
+@keyframes pop-in {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes check-draw {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes ring-pulse {
+  from {
+    opacity: 1;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.35);
+  }
+}
+
+@media (max-width: 480px) {
+  .cart-panel {
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    max-height: 80vh;
+    border-radius: 18px 18px 0 0;
+    animation: cart-sheet-in 0.25s ease both;
+  }
+  @keyframes cart-sheet-in {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cart-panel,
+  .cart-item,
+  .cart-confirming__circle,
+  .cart-confirming__circle::before,
+  .cart-confirming__circle svg {
+    animation: none !important;
+  }
+}

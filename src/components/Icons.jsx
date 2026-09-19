@@ -45,6 +45,25 @@ export const Plus = () => (
   </svg>
 );
 
+export const Minus = () => (
+  <svg width="14" height="14" viewBox="0 0 16 16" aria-hidden="true">
+    <path d="M3 8h10" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
+  </svg>
+);
+
+export const Trash = () => (
+  <svg width="16" height="16" viewBox="0 0 20 20" aria-hidden="true">
+    <path
+      d="M4 6h12M8 6V4.5A1.5 1.5 0 0 1 9.5 3h1A1.5 1.5 0 0 1 12 4.5V6m-6.5 0 .6 10a1.5 1.5 0 0 0 1.5 1.4h3.8a1.5 1.5 0 0 0 1.5-1.4l.6-10"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
 export const Check = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
     <path d="M2.5 8.5 6 12l7.5-8" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />

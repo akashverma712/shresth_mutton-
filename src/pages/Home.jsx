@@ -16,7 +16,7 @@ export default function Home() {
           <p className="eyebrow eyebrow--dark">Since the first handi</p>
           <h2 className="section-title">Cooked the slow way, on purpose</h2>
           <p>
-            Every handi at Barab is sealed and cooked low over coals for hours, the way it's done back home
+            Every handi at Shresth is sealed and cooked low over coals for hours, the way it's done back home
             in Champaran. No shortcuts, no pressure cookers — just mutton, spice and time.
           </p>
           <ul className="about__stats">
@@ -29,7 +29,7 @@ export default function Home() {
               <span>fresh, cut to order</span>
             </li>
             <li>
-              <strong>5★</strong>
+              <strong>4.2★</strong>
               <span>regulars' rating</span>
             </li>
           </ul>

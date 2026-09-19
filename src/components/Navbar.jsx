@@ -1,20 +1,32 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { ChefHat, SearchIcon, CartIcon } from "./Icons";
+import { ChefHat, CartIcon, Minus, Plus, Trash, Check } from "./Icons";
 import { useCart } from "../context/CartContext";
 
-const BRAND = { name: "Barab", tagline: "Mutton & Grill House" };
+const BRAND = { name: "Shresth", tagline: "Champaran Mutton Handi" };
 
 const NAV = [
   { to: "/", label: "Home", end: true },
-  { to: "/#about", label: "About" },
   { to: "/menu", label: "Menu" },
   { to: "/contact", label: "Contact" },
 ];
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { count } = useCart();
+  const [cartOpen, setCartOpen] = useState(false);
+  const { items, count, total, addToCart, decrementItem, removeItem, confirmOrder, confirming } = useCart();
+  const cartRef = useRef(null);
+
+  // Close the cart dropdown on outside click.
+  useEffect(() => {
+    const onClick = (e) => {
+      if (cartRef.current && !cartRef.current.contains(e.target)) {
+        setCartOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
+  }, []);
 
   return (
     <header className="nav">
@@ -42,16 +54,83 @@ export default function Navbar() {
         ))}
       </nav>
 
-      <div className="tools">
-        <button className="icon-btn" aria-label="Search">
-          <SearchIcon />
-        </button>
-        <button className="icon-btn" aria-label={`Cart, ${count} items`}>
+      <div className="tools cart-wrap" ref={cartRef}>
+        <button
+          className="icon-btn"
+          aria-label={`Cart, ${count} items`}
+          aria-expanded={cartOpen}
+          onClick={() => setCartOpen((o) => !o)}
+        >
           <CartIcon />
           <span className="badge" key={count}>
             {count}
           </span>
         </button>
+
+        {cartOpen && (
+          <div className="cart-panel">
+            {confirming ? (
+              <div className="cart-confirming">
+                <div className="cart-confirming__circle">
+                  <Check />
+                </div>
+                <p>Order confirmed!</p>
+                <span>Your handi is on its way to the kitchen.</span>
+              </div>
+            ) : (
+              <>
+                <p className="cart-panel__title">Your order</p>
+
+                {items.length === 0 ? (
+                  <p className="cart-panel__empty">Your cart is empty.</p>
+                ) : (
+                  <>
+                    <ul className="cart-items">
+                      {items.map((item) => (
+                        <li className="cart-item" key={item.id}>
+                          <span className="cart-item__name">{item.name}</span>
+
+                          <span className="cart-item__qty">
+                            <button onClick={() => decrementItem(item.id)} aria-label={`Remove one ${item.name}`}>
+                              <Minus />
+                            </button>
+                            <span>{item.qty}</span>
+                            <button onClick={() => addToCart(item)} aria-label={`Add one more ${item.name}`}>
+                              <Plus />
+                            </button>
+                          </span>
+
+                          <span className="cart-item__price">₹{item.price * item.qty}</span>
+
+                          <button
+                            className="cart-item__remove"
+                            onClick={() => removeItem(item.id)}
+                            aria-label={`Remove ${item.name} from cart`}
+                          >
+                            <Trash />
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <div className="cart-panel__total">
+                      <span>Total</span>
+                      <span>₹{total}</span>
+                    </div>
+                  </>
+                )}
+
+                <button
+                  className="cart-confirm"
+                  disabled={items.length === 0}
+                  onClick={confirmOrder}
+                >
+                  Confirm order
+                </button>
+              </>
+            )}
+          </div>
+        )}
       </div>
 
       <button className="burger" aria-label="Toggle menu" aria-expanded={menuOpen} onClick={() => setMenuOpen((o) => !o)}>
